@@ -20,7 +20,7 @@ public class Test
     public void removeProfile(Profile p)
     {
         if (allProfiles.contains(p))
-        // MISSING OPENING BRACE
+        // MISSING OPEN  CURLY BRACE
             // Assertion: p must be in the list.
             for (int i = 1; i <= allProfiles.getLength(); i++)
             {

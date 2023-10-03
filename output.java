@@ -20,9 +20,9 @@ public class Test
     public void removeProfile(Profile p)
     {
         if (allProfiles.contains(p))
-        // 1 MISSING '{' BRACE WAS ADDED HERE 
+        // ***** MISSING '{' BRACE WAS ADDED HERE 
         {
-        // MISSING OPENING BRACE
+        // MISSING OPEN  CURLY BRACE
             // Assertion: p must be in the list.
             for (int i = 1; i <= allProfiles.getLength(); i++)
             {
@@ -33,24 +33,26 @@ public class Test
             for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
             {
                 if (allProfiles.getEntry(i) == p)
-                // 1 MISSING '{' BRACE WAS ADDED HERE 
+                // ***** MISSING '{' BRACE WAS ADDED HERE 
                 {
                     foundIndex = i;
-            // 2 MISSING '}' BRACE WAS ADDED HERE 
+                // ***** MISSING '}' BRACE WAS ADDED HERE 
                 }
             // MISSING CLOSE  CURLY BRACE
-            allProfiles.remove(foundIndex);
-        // 2 MISSING '}' BRACE WAS ADDED HERE 
+            // ***** MISSING '}' BRACE WAS ADDED HERE 
             }
+            allProfiles.remove(foundIndex);
+        // ***** MISSING '}' BRACE WAS ADDED HERE 
+        }
         // MISSING CLOSE  CURLY BRACE
     } // end removeProfile
 
-    // 2 MISSING '}' BRACE WAS ADDED HERE 
-        }
     /** Created a friendship between two profiles on the social network.
          @param a  The first profile in the friendship.
          @param b  The second profile in the friendship. */
     public void createFriendship(Profile a, Profile b)
+    // ***** MISSING '{' BRACE WAS ADDED HERE 
+    {
     // MISSING OPEN  CURLY BRACE
         a.addFriend(b);
         b.addFriend(a);
