@@ -34,7 +34,7 @@ public class Test
                     foundIndex = i;
             // MISSING CLOSE  CURLY BRACE
             allProfiles.remove(foundIndex);
-         // MISSING CLOSE  CURLY BRACE
+        // MISSING CLOSE  CURLY BRACE
     } // end removeProfile
 
     /** Created a friendship between two profiles on the social network.
