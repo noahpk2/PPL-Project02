@@ -20,7 +20,7 @@ public class Test
     public void removeProfile(Profile p)
     {
         if (allProfiles.contains(p))
-        {
+        // MISSING OPEN  CURLY BRACE
             // Assertion: p must be in the list.
             for (int i = 1; i <= allProfiles.getLength(); i++)
             {
@@ -34,7 +34,7 @@ public class Test
                     foundIndex = i;
             // MISSING CLOSE  CURLY BRACE
             allProfiles.remove(foundIndex);
-         // MISSING CLOSE  CURLY BRACE
+        // MISSING CLOSE  CURLY BRACE
     } // end removeProfile
 
     /** Created a friendship between two profiles on the social network.

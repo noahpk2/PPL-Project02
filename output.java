@@ -20,7 +20,9 @@ public class Test
     public void removeProfile(Profile p)
     {
         if (allProfiles.contains(p))
+        // ***** MISSING '{' BRACE WAS ADDED HERE 
         {
+        // MISSING OPEN  CURLY BRACE
             // Assertion: p must be in the list.
             for (int i = 1; i <= allProfiles.getLength(); i++)
             {
@@ -31,16 +33,26 @@ public class Test
             for (int i = 1; i <= allProfiles.getLength() && foundIndex == -1; i++)
             {
                 if (allProfiles.getEntry(i) == p)
+                // ***** MISSING '{' BRACE WAS ADDED HERE 
+                {
                     foundIndex = i;
+                // ***** MISSING '}' BRACE WAS ADDED HERE 
+                }
             // MISSING CLOSE  CURLY BRACE
+            // ***** MISSING '}' BRACE WAS ADDED HERE 
+            }
             allProfiles.remove(foundIndex);
-         // MISSING CLOSE  CURLY BRACE
+        // ***** MISSING '}' BRACE WAS ADDED HERE 
+        }
+        // MISSING CLOSE  CURLY BRACE
     } // end removeProfile
 
     /** Created a friendship between two profiles on the social network.
          @param a  The first profile in the friendship.
          @param b  The second profile in the friendship. */
     public void createFriendship(Profile a, Profile b)
+    // ***** MISSING '{' BRACE WAS ADDED HERE 
+    {
     // MISSING OPEN  CURLY BRACE
         a.addFriend(b);
         b.addFriend(a);
@@ -65,3 +77,6 @@ public class Test
         } // end for
     } // end display;
 } // end ProfileManager
+
+
+ Public method count: 7
