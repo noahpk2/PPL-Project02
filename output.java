@@ -77,3 +77,6 @@ public class Test
         } // end for
     } // end display;
 } // end ProfileManager
+
+
+ Public method count: 7

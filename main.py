@@ -4,7 +4,8 @@
 import re
 
 # Define a regular expression pattern to match Java method declarations
-method_pattern = re.compile(r'(?:(?:public|private|protected|static|final|native|synchronized|abstract|transient)+\s+)+[$_\w<>\[\]\s]*\s+[\$_\w]+\([^\)]*\)?\s*\{?[^\}]*\}?')
+method_pattern = re.compile(r'^(?:(?:public|private|protected|static|final|native|synchronized|abstract|transient)+\s+)+[$_\w<>\[\]\s]*\s+[\$_\w]+\([^\)]*\)?\s*\{?[^\}]*\}?$')
+public_method_pattern = re.compile(r'^.*(?:(?:public)\s+).*$')
 if_pattern = re.compile(r'^\s*if\s*\(.+\)\s*\{?$')
 else_if_pattern = re.compile(r'^\s*else\s*if\s*\(.+\)\s*\{?$')
 else_pattern = re.compile(r'^\s*else\s*\{?$')
@@ -21,7 +22,7 @@ def is_decision_or_loop_or_method(line):
         else_pattern,
         for_pattern,
         method_pattern,
-        # Need to test while still and 'do while'
+        # TODO: Need to test 'while' and 'do while' and 'switch'
         # while_pattern
     ]
 
@@ -34,9 +35,12 @@ def is_decision_or_loop_or_method(line):
     return False
 
 
-# Function to check if a line contains a method declaration
 def is_method_declaration(line):
     return method_pattern.match(line)
+
+
+def is_public_method_declaration(line):
+    return public_method_pattern.match(line)
 
 
 def get_indent_count(line):
@@ -57,12 +61,16 @@ class JavaParser:
         self.method_missing_starting_brace = False
         self.method_indent_count = 0
         self.output_file = None
+        self.public_method_count = 0
         # The stack just stores an array of indent counts
         # When you reach a spot where you need a closing brace, you just pop the number and use it for the indent count
         self.brace_indent_stack = []
 
     def check_line(self, line):
         stripped_line = line.strip()
+
+        if is_public_method_declaration(line):
+            self.public_method_count = self.public_method_count + 1
 
         if self.is_inside_javadoc_comment:
             if is_line_end_of_javadoc_comment(stripped_line):
@@ -115,6 +123,10 @@ class JavaParser:
         self.output_file = open('output.java', 'w')
         lines = read_file('sample.java')
         self.check_structure_by_line(lines)
+
+        output_file.write(f"\n\n Public method count: {self.public_method_count}")
+        print(f"Public method count: {self.public_method_count}")
+
         self.output_file.close()
 
 
