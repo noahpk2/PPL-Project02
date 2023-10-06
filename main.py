@@ -10,6 +10,9 @@ if_pattern = re.compile(r'^\s*if\s*\(.+\)\s*\{?$')
 else_if_pattern = re.compile(r'^\s*else\s*if\s*\(.+\)\s*\{?$')
 else_pattern = re.compile(r'^\s*else\s*\{?$')
 for_pattern = re.compile(r'for *\(.*;.*;.*\)')
+switch_pattern = re.compile(r'^\s*switch *\(.*\).*$')
+
+# TODO: Test below
 while_pattern = re.compile(r'while *\(.*\)')
 
 def is_decision_or_loop_or_method(line):
@@ -24,6 +27,7 @@ def is_decision_or_loop_or_method(line):
         method_pattern,
         # TODO: Need to test 'while' and 'do while' and 'switch'
         # while_pattern
+        switch_pattern
     ]
 
     # Regular expressions to match common decision structures
@@ -120,7 +124,7 @@ class JavaParser:
             output_file.write(updated_line)
 
     def start(self):
-        self.output_file = open('output.java', 'w')
+        self.output_file = open('output.txt', 'w')
         lines = read_file('sample.java')
         self.check_structure_by_line(lines)
 
@@ -137,7 +141,7 @@ def read_file(filename):
 
 
 if __name__ == '__main__':
-    output_file = open('output.java', 'w')
+    output_file = open('output.txt', 'w')
 
     parser = JavaParser()
     parser.start()
