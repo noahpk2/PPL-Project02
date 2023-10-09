@@ -66,6 +66,7 @@ class JavaParser:
         self.method_indent_count = 0
         self.output_file = None
         self.public_method_count = 0
+        self.is_first_line_of_method = False
         # The stack just stores an array of indent counts
         # When you reach a spot where you need a closing brace, you just pop the number and use it for the indent count
         self.brace_indent_stack = []
@@ -104,8 +105,13 @@ class JavaParser:
             self.brace_indent_stack.pop()
             self.method_indent_count = get_indent_count(line)
 
+        if self.is_first_line_of_method and not stripped_line.startswith("//") and not self.is_inside_javadoc_comment:
+            self.is_first_line_of_method = False
+            self.method_indent_count = get_indent_count(line)
+
         if is_decision_or_loop_or_method(line):
             self.method_indent_count = get_indent_count(line)
+            self.is_first_line_of_method = True
 
             # Check to see if there is a brace at the end of the line
             last_char = stripped_line[-1]
@@ -121,14 +127,14 @@ class JavaParser:
             # Prints line count for easier debugging. We can remove this and count variable before submitting
             print(count)
             updated_line = self.check_line(line)
-            output_file.write(updated_line)
+            self.output_file.write(updated_line)
 
     def start(self):
         self.output_file = open('output.txt', 'w')
         lines = read_file('sample.java')
         self.check_structure_by_line(lines)
 
-        output_file.write(f"\n\n Public method count: {self.public_method_count}")
+        self.output_file.write(f"\n\n Public method count: {self.public_method_count}")
         print(f"Public method count: {self.public_method_count}")
 
         self.output_file.close()
@@ -141,7 +147,6 @@ def read_file(filename):
 
 
 if __name__ == '__main__':
-    output_file = open('output.txt', 'w')
 
-    parser = JavaParser()
-    parser.start()
+    java_parser = JavaParser()
+    java_parser.start()

@@ -10,6 +10,7 @@ public class Test
         int month = 8;
         String monthString;
         switch (month)
+        // MISSING OPEN  CURLY BRACE
             case 1:  monthString = "January";
                      break;
             case 2:  monthString = "February";
@@ -36,7 +37,7 @@ public class Test
                      break;
             default: monthString = "Invalid month";
                      break;
-        }
+        // MISSING CLOSE  CURLY BRACE
         System.out.println(monthString);
 
     } // end default constructor
