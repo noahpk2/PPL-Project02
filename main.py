@@ -137,10 +137,10 @@ class JavaParser:
 
         # Change this to the path of the file you want to read
         lines = read_file('sample.java')
-        self.output_file.write(f"***********ORIGINAL TEXT:*********** \n\n")
+        self.output_file.write(f"************ORIGINAL TEXT:************ \n\n")
         for line in lines:
             self.output_file.write(line)
-        self.output_file.write(f"\n\n ***********CORRECTED TEXT:*********** \n\n")
+        self.output_file.write(f"\n\n ************CORRECTED TEXT:************ \n\n")
         self.check_structure_by_line(lines)
 
         self.output_file.write(f"\n\n Public method count: {self.public_method_count}")
