@@ -9,9 +9,9 @@ if_pattern = re.compile(r'^\s*if\s*\(.+\)\s*\{?$')
 else_if_pattern = re.compile(r'^\s*else\s*if\s*\(.+\)\s*\{?$')
 else_pattern = re.compile(r'^\s*else\s*\{?$')
 for_pattern = re.compile(r'for *\(.*;.*;.*\)')
-while_pattern = re.compile(r'^\s*while\(.*\)\s*\\{?$\s*.*\s*.*\s*//}?$')
-do_while_pattern = re.compile(r'^\s*do\\{?$\s*.*\s*.*\s*\\}?$^while\(.*\);')
 switch_pattern = re.compile(r'^\s*switch *\(.*\).*$')
+while_pattern = re.compile(r'^\s*while *\(.*\)')
+do_pattern = re.compile(r'^\s*do.*$')
 
 
 def is_decision_or_loop_or_method(line):
@@ -24,9 +24,9 @@ def is_decision_or_loop_or_method(line):
         else_pattern,
         for_pattern,
         method_pattern,
-        # TODO: Need to test 'while' and 'do while' and 'switch'
-        # while_pattern
-        switch_pattern
+        switch_pattern,
+        while_pattern,
+        do_pattern,
     ]
 
     # Regular expressions to match common decision structures
@@ -123,13 +123,15 @@ class JavaParser:
         count = 0
         for line in file_lines:
             count += 1
-            # Prints line count for easier debugging. We can remove this and count variable before submitting
+            # Prints line count for easier debugging
             print(count)
             updated_line = self.check_line(line)
             self.output_file.write(updated_line)
 
     def start(self):
         self.output_file = open('output.txt', 'w')
+
+        # Change this to the path of the file you want to read
         lines = read_file('sample.java')
         self.check_structure_by_line(lines)
 

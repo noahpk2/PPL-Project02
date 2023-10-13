@@ -7,6 +7,33 @@ public class Test
     {
         allProfiles = new AList<>();
 
+        int i = 0;
+        do
+        // ***** MISSING '{' BRACE WAS ADDED HERE 
+        {
+        // MISSING OPEN  CURLY BRACE
+          System.out.println(i);
+          i++;
+        // ***** MISSING '}' BRACE WAS ADDED HERE 
+        }
+        // MISSING CLOSE  CURLY BRACE
+        while (i < 5);
+
+
+        // ***** MISSING '{' BRACE WAS ADDED HERE 
+        {
+        int i = 0;
+        while (i < 5)
+        // ***** MISSING '{' BRACE WAS ADDED HERE 
+        {
+        // MISSING OPEN  CURLY BRACE
+            System.out.println(i);
+            i++;
+        // ***** MISSING '}' BRACE WAS ADDED HERE 
+        }
+        // MISSING CLOSE  CURLY BRACE
+
+
         int month = 8;
         String monthString;
         switch (month)
