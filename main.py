@@ -16,7 +16,7 @@ public_method_pattern = re.compile(r'^.*(?:(?:public)\s+).*$')
 if_pattern = re.compile(r'^\s*if\s*\(.+\)\s*\{?$')
 else_if_pattern = re.compile(r'^\s*else\s*if\s*\(.+\)\s*\{?$')
 else_pattern = re.compile(r'^\s*else\s*\{?$')
-for_pattern = re.compile(r'for *\(.*;.*;.*\)')
+for_pattern = re.compile(r'^\s*for*\(.*;.*;.*\).*$')
 switch_pattern = re.compile(r'^\s*switch *\(.*\).*$')
 while_pattern = re.compile(r'^\s*while *\(.*\)')
 do_pattern = re.compile(r'^\s*do.*$')
@@ -128,11 +128,7 @@ class JavaParser:
         return line
 
     def check_structure_by_line(self, file_lines):
-        count = 0
         for line in file_lines:
-            count += 1
-            # Prints line count for easier debugging
-            print(count)
             updated_line = self.check_line(line)
             self.output_file.write(updated_line)
 
