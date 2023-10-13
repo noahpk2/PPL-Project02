@@ -1,6 +1,5 @@
 '''Python program to "parse" java files'''
 
-
 import re
 
 # Define a regular expression pattern to match Java method declarations
@@ -10,10 +9,10 @@ if_pattern = re.compile(r'^\s*if\s*\(.+\)\s*\{?$')
 else_if_pattern = re.compile(r'^\s*else\s*if\s*\(.+\)\s*\{?$')
 else_pattern = re.compile(r'^\s*else\s*\{?$')
 for_pattern = re.compile(r'for *\(.*;.*;.*\)')
+while_pattern = re.compile(r'^\s*while\(.*\)\s*\\{?$\s*.*\s*.*\s*//}?$')
+do_while_pattern = re.compile(r'^\s*do\\{?$\s*.*\s*.*\s*\\}?$^while\(.*\);')
 switch_pattern = re.compile(r'^\s*switch *\(.*\).*$')
 
-# TODO: Test below
-while_pattern = re.compile(r'while *\(.*\)')
 
 def is_decision_or_loop_or_method(line):
     # Remove leading and trailing whitespaces
