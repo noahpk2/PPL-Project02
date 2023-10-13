@@ -1,4 +1,12 @@
-'''Python program to "parse" java files'''
+"""
+Python program to "parse" java files
+Team Cosmic Carousel
+This program assumes that the file being read has correct indentation in order to determine where a missing brace is
+When executed, it pulls in a file and reads it line by line
+If one of the decision/loop/method regex patterns is detected in a line, it will start to check for braces
+If a brace is exists, it will push the indent count of that line onto the stack
+If a brace is missing, it will add the brace and push the indent count onto that line of the stack
+"""
 
 import re
 
