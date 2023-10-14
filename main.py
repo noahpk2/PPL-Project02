@@ -144,7 +144,6 @@ class JavaParser:
         self.check_structure_by_line(lines)
 
         self.output_file.write(f"\n\n Public method count: {self.public_method_count}")
-        print(f"Public method count: {self.public_method_count}")
 
         self.output_file.close()
 
