@@ -54,6 +54,14 @@ def is_public_method_declaration(line):
     return public_method_pattern.match(line)
 
 
+def is_do_pattern(line):
+    return do_pattern.match(line)
+
+
+def is_while_pattern(line):
+    return while_pattern.match(line)
+
+
 def get_indent_count(line):
     return len(line) - len(line.lstrip())
 
@@ -74,6 +82,7 @@ class JavaParser:
         self.output_file = None
         self.public_method_count = 0
         self.is_first_line_of_method = False
+        self.is_do_while = False
         # The stack just stores an array of indent counts
         # When you reach a spot where you need a closing brace, you just pop the number and use it for the indent count
         self.brace_indent_stack = []
@@ -117,6 +126,13 @@ class JavaParser:
             self.method_indent_count = get_indent_count(line)
 
         if is_decision_or_loop_or_method(line):
+            if is_do_pattern(line):
+                self.is_do_while = True
+
+            if is_while_pattern(line) and self.is_do_while:
+                self.is_do_while = False
+                return line
+
             self.method_indent_count = get_indent_count(line)
             self.is_first_line_of_method = True
 

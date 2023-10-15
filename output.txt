@@ -144,8 +144,6 @@ public class Test
         while (i < 5);
 
 
-        // ***** MISSING '{' BRACE WAS ADDED HERE 
-        {
         int i = 0;
         while (i < 5)
         // ***** MISSING '{' BRACE WAS ADDED HERE 
