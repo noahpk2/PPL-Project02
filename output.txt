@@ -1,4 +1,4 @@
-**********ORIGINAL TEXT:********** 
+************ORIGINAL TEXT:************ 
 
 public class Test
 {
@@ -120,7 +120,7 @@ public class Test
 } // end ProfileManager
 
 
- **********CORRECTED TEXT:********** 
+ ************CORRECTED TEXT:************ 
 
 public class Test
 {
